@@ -8,14 +8,17 @@ import org.springframework.stereotype.Service;
 public class NoticiasJob {
 
 	private final RssService rssService;
+	private final AiService aiService;
 
-	public NoticiasJob(RssService rssService) {
+	public NoticiasJob(RssService rssService, AiService aiService) {
 		this.rssService = rssService;
+		this.aiService = aiService;
 	}
 
-	public void runNoticiasJob() {
-		  List<String> titles = rssService.getNewsTitles();
-	        System.out.println(titles);
+	public String runNoticiasJob() {
+		List<String> titles = rssService.getNewsTitles();
+		String resumen = aiService.summarizeNews(titles);
+		return resumen;
 	}
 
 }
