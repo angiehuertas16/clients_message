@@ -17,7 +17,7 @@ public class OllamaService {
 	    @SuppressWarnings("rawtypes")
 		public String analyzeNews(List<String> titles) {
 
-	        String prompt = "Resume estas noticias:\n" + String.join("\n", titles);
+	        String prompt = "Resume estas noticias en tres parrafos de la más relevante a la menos relevate:\n" + String.join("\n", titles);
 
 	        Map<String, Object> request = new HashMap<>();
 	        request.put("model", "llama3");
