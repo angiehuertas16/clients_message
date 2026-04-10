@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.symplifica.clients_message.configauth.JwtConfig;
 import java.util.Date;
 import javax.crypto.SecretKey;
+import java.util.function.Function;
 
 @Service
 public class JwtService {
@@ -43,4 +44,24 @@ public class JwtService {
 
         return claims.getSubject();
     }
+    
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+    
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+    
+    private Claims extractAllClaims(String token) {
+        return Jwts
+                .parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+    
+    
 }
