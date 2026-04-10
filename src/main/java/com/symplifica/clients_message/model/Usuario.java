@@ -1,5 +1,7 @@
 package com.symplifica.clients_message.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,37 +20,13 @@ public class Usuario {
 
     private String email;
 
+    private String password_hash;
     
+    private boolean activo;
     
+    private LocalDateTime fecha_creacion;
     
-    
-    
-    
-    
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
+    private LocalDateTime fecha_actualizacion;
     
 	
 }

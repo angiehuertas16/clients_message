@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.symplifica.clients_message.exceptions.CustomException;
+import com.symplifica.clients_message.exceptions.ExceptionDescriptions;
 import com.symplifica.clients_message.service.RssService;
 
 @RestController
@@ -23,7 +25,8 @@ public class NewsController {
     public ResponseEntity<List<String>> getNews() {
     	 List<String> news = rssService.getNewsTitles();
     	 if (news == null || news.isEmpty()) {
-    	        return ResponseEntity.noContent().build();
+    	          throw new CustomException(ExceptionDescriptions.DATA_NOT_FOUND
+    	        		  , HttpStatus.NOT_FOUND);
     	  }
         return new ResponseEntity<List<String>>(news,HttpStatus.OK);
     }
