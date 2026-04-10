@@ -27,5 +27,7 @@ public class NoticiasJob {
 			System.out.println("Email no enviado " + e.getMessage());
 		}
 	}
+	
+	
 
 }

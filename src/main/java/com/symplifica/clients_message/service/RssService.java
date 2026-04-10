@@ -17,33 +17,38 @@ import com.rometools.rome.io.SyndFeedInput;
 @Service
 public class RssService {
 
-	public List<String> getNewsTitles() {
+	  private final HttpClient client;
 
-		List<String> titles = new ArrayList<>();
+	    public RssService(HttpClient client) {
+	        this.client = client;
+	    }
 
-		try {
+	    public List<String> getNewsTitles() {
 
-			HttpClient client = HttpClient.newHttpClient();
+	        List<String> titles = new ArrayList<>();
 
-			HttpRequest request = HttpRequest.newBuilder()
-					.uri(URI.create("https://www.portafolio.co/rss/tendencias/entretenimiento.xml")).GET().build();
-			
-			HttpResponse<InputStream> response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+	        try {
 
-			SyndFeedInput input = new SyndFeedInput();
-			SyndFeed feed = input.build(new InputStreamReader(response.body()));
-			
-			
-			
-			for (SyndEntry entry : feed.getEntries()) {
-				titles.add(entry.getTitle());
-			}
+	            HttpRequest request = HttpRequest.newBuilder()
+	                    .uri(URI.create("https://www.portafolio.co/rss/tendencias/entretenimiento.xml"))
+	                    .GET()
+	                    .build();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	            HttpResponse<InputStream> response =
+	                    client.send(request, HttpResponse.BodyHandlers.ofInputStream());
 
-		return titles;
-	}
+	            SyndFeedInput input = new SyndFeedInput();
+	            SyndFeed feed = input.build(new InputStreamReader(response.body()));
+
+	            for (SyndEntry entry : feed.getEntries()) {
+	                titles.add(entry.getTitle());
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	        return titles;
+	    }
 
 }
