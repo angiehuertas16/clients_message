@@ -10,12 +10,9 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 public class AiService {
 
     private final OllamaChatModel model;
-
-    public AiService() {
-        this.model = OllamaChatModel.builder()
-                .baseUrl("http://localhost:11434")
-                .modelName("llama3")
-                .build();
+    
+    public AiService(OllamaChatModel model) {
+        this.model = model;
     }
 
     public String summarizeNews(List<String> titles) {

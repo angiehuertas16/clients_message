@@ -9,16 +9,23 @@ public class NoticiasJob {
 
 	private final RssService rssService;
 	private final AiService aiService;
+	private final EmailService emailService;
 
-	public NoticiasJob(RssService rssService, AiService aiService) {
+	public NoticiasJob(RssService rssService, AiService aiService,EmailService emailService) {
 		this.rssService = rssService;
 		this.aiService = aiService;
+		this.emailService=emailService;
 	}
 
-	public String runNoticiasJob() {
+	public void runNoticiasJob() {
 		List<String> titles = rssService.getNewsTitles();
 		String resumen = aiService.summarizeNews(titles);
-		return resumen;
+		try {
+			emailService.sendEmail(resumen);
+			System.out.println("Mail enviado");
+		} catch (Exception e) {
+			System.out.println("Email no enviado " + e.getMessage());
+		}
 	}
 
 }

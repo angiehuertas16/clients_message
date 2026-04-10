@@ -33,6 +33,8 @@ public class RssService {
 			SyndFeedInput input = new SyndFeedInput();
 			SyndFeed feed = input.build(new InputStreamReader(response.body()));
 			
+			
+			
 			for (SyndEntry entry : feed.getEntries()) {
 				titles.add(entry.getTitle());
 			}
