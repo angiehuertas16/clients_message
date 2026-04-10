@@ -47,7 +47,7 @@ public class RssService {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-
+	        
 	        return titles;
 	    }
 

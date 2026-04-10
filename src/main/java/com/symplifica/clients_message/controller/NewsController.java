@@ -1,7 +1,8 @@
 package com.symplifica.clients_message.controller;
 
 import java.util.List;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,11 @@ public class NewsController {
     }
 
     @GetMapping("/titles")
-    public List<String> getNews() {
-        return rssService.getNewsTitles();
+    public ResponseEntity<List<String>> getNews() {
+    	 List<String> news = rssService.getNewsTitles();
+    	 if (news == null || news.isEmpty()) {
+    	        return ResponseEntity.noContent().build();
+    	  }
+        return new ResponseEntity<List<String>>(news,HttpStatus.OK);
     }
 }
