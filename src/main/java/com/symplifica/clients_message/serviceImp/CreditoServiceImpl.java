@@ -1,6 +1,5 @@
 package com.symplifica.clients_message.serviceImp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
