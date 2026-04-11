@@ -25,6 +25,16 @@ public class Cuota {
 	private int numerocuota;
 
 	private double valor_cuota;
+	
+	private boolean activo;
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 
 	private LocalDate fecha_pago;
 
@@ -68,13 +78,14 @@ public class Cuota {
 		this.fecha_pago = fecha_pago;
 	}
 
-	public Cuota(int id, Credito credito, int numerocuota, double valor_cuota, LocalDate fecha_pago) {
+	public Cuota(int id, Credito credito, int numerocuota, double valor_cuota, boolean activo, LocalDate fecha_pago) {
 		super();
 		this.id = id;
 		this.credito = credito;
 		this.numerocuota = numerocuota;
 		this.valor_cuota = valor_cuota;
+		this.activo = activo;
 		this.fecha_pago = fecha_pago;
 	}
-	
+
 }
