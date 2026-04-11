@@ -26,4 +26,19 @@ public class AiService {
 
         return model.chat(prompt);
     }
+    
+    public String generarRespuestaCliente(String mensaje) {
+
+        String prompt = """
+        Eres un asistente de atención al cliente para una empresa de créditos.
+
+        Responde de forma profesional, clara y amable.
+
+        Mensaje del cliente:
+        %s
+        """.formatted(mensaje);
+
+        return  model.chat(prompt);
+    }
+    
 }
