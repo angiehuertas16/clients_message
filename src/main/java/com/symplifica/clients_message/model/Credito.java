@@ -40,6 +40,7 @@ public class Credito {
 
 	private Double valor;
 
+	private boolean activo;
 	
 	public int getId() {
 		return id;
@@ -107,6 +108,14 @@ public class Credito {
 		this.lista_cuotas = lista_cuotas;
 		this.meses = meses;
 		this.valor = valor;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 	

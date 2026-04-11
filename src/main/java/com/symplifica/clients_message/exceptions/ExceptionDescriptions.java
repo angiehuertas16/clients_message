@@ -10,7 +10,9 @@ public enum ExceptionDescriptions {
 	CANNOT_SAVE_USER(4, "No se puede guardar el usuario, por favor verifique los datos"),
 	WRONG_PASSWORD(5, "La contraseña digitada no es correcta"),
 	USER_NOT_FOUND(6, "El usuario no se encuentra en la base de datos"),
-	DATA_NOT_FOUND(7, "Informacion no encontrada.");
+	DATA_NOT_FOUND(7, "Informacion no encontrada."),
+	DATA_NOT_DELETED(8, "La informacion no pudo ser borrada"),
+	DATA_NOT_SAVE(9, "La informacion no pudo ser Guardada");
 	
 	private int code;
 	private String description;
