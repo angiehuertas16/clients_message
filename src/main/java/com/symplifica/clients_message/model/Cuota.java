@@ -27,6 +27,8 @@ public class Cuota {
 	private double valor_cuota;
 	
 	private boolean activo;
+	
+	private LocalDate fecha_pago;
 
 	public boolean isActivo() {
 		return activo;
@@ -35,8 +37,6 @@ public class Cuota {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
-	private LocalDate fecha_pago;
 
 	public int getId() {
 		return id;

@@ -56,8 +56,8 @@ public class CreditoServiceImpl implements CreditoService {
     			cuota.setFecha_pago(fecha.toLocalDate());
     			cuota.setActivo(true);
     			cuota.setValor_cuota(valor_cuota);
-    			fecha.plusMonths(1);
     			listaCuotas.add(cuota);
+    			fecha =fecha.plusMonths(1);
 			}
     		cuotaRepository.saveAll(listaCuotas);
 		} catch (Exception e) {
