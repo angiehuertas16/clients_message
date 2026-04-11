@@ -18,7 +18,7 @@ public class TipoCredito {
 	@Column(unique = true, nullable = false)
 	private String descripcion;
 	
-	private double rate;
+	private Double rate;
 
 	public int getId() {
 		return id;
@@ -36,18 +36,19 @@ public class TipoCredito {
 		this.descripcion = descripcion;
 	}
 
-	public double getRate() {
-		return rate;
-	}
 
-	public void setRate(double rate) {
-		this.rate = rate;
-	}
-
-	public TipoCredito(int id, String descripcion, double rate) {
+	public TipoCredito(int id, String descripcion, Double rate) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
+		this.rate = rate;
+	}
+
+	public Double getRate() {
+		return rate;
+	}
+
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
 

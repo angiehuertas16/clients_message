@@ -15,6 +15,9 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value = CustomException.class)
 	public ResponseEntity<ErrorDTO> handlerException(CustomException exception) {
+		
+		   exception.printStackTrace(); // <-- IMPORTANTE
+		
 		return new ResponseEntity<>(new ErrorDTO(exception.getCode(), exception.getDescription()),
 				exception.getHttpStatus());
 	}
@@ -22,6 +25,9 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
 	public ResponseEntity<ErrorDTO> handlerException(HttpRequestMethodNotSupportedException exception) {
+		
+		   exception.printStackTrace(); // <-- IMPORTANTE
+		
 		return new ResponseEntity<>(new ErrorDTO(ExceptionDescriptions.METHOD_NOT_ALLOWED.getCode(),
 				ExceptionDescriptions.METHOD_NOT_ALLOWED.getDescription()), HttpStatus.METHOD_NOT_ALLOWED);
 	}
@@ -29,6 +35,8 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity<ErrorDTO> handlerException(Exception exception) {
+		   exception.printStackTrace(); // <-- IMPORTANTE
+		
 		return new ResponseEntity<>(new ErrorDTO(ExceptionDescriptions.DEFAULT_EXCEPTION.getCode(),
 				ExceptionDescriptions.DEFAULT_EXCEPTION.getDescription()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -36,6 +44,8 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorDTO> handlerException(MethodArgumentNotValidException exception) {
+		
+		   exception.printStackTrace(); // <-- IMPORTANTE
 		return new ResponseEntity<>(new ErrorDTO(ExceptionDescriptions.BAD_REQUEST.getCode(),
 				String.format(ExceptionDescriptions.BAD_REQUEST.getDescription(), exception.getBindingResult().getFieldErrors().get(exception.getBindingResult().getFieldErrors().size()-1).getDefaultMessage())), HttpStatus.BAD_REQUEST);
 	}

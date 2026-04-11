@@ -18,6 +18,7 @@ public class CreditoController {
 
     @PostMapping("/guardar")
     public  ResponseEntity<Credito> crearCredito(@RequestBody Credito credito) {
+    	System.out.println("ENTRA AL CONTROLLER");
         return creditoService.crearCredito(credito);
     }
 

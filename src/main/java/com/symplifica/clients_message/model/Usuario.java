@@ -27,7 +27,7 @@ public class Usuario {
 
     private String password_hash;
     
-    private boolean activo;
+    private Boolean  activo;
     
     private LocalDateTime fecha_creacion;
     
@@ -72,11 +72,12 @@ public class Usuario {
 		this.password_hash = password_hash;
 	}
 
-	public boolean isActivo() {
+
+	public Boolean getActivo() {
 		return activo;
 	}
 
-	public void setActivo(boolean activo) {
+	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
 
@@ -112,7 +113,8 @@ public class Usuario {
 		this.lista_creditos = lista_creditos;
 	}
 
-	public Usuario(Integer id, String nombre, String email, String password_hash, boolean activo,
+
+	public Usuario(Integer id, String nombre, String email, String password_hash, Boolean activo,
 			LocalDateTime fecha_creacion, LocalDateTime fecha_actualizacion, TipoDocumento tipo_documento,
 			List<Credito> lista_creditos) {
 		super();

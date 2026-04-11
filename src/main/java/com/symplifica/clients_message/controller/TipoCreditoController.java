@@ -16,7 +16,7 @@ public class TipoCreditoController {
         this.tipoCreditoService = tipoCreditoService;
     }
 
-    @GetMapping("/obtener/{id}")
+    @GetMapping("/listar")
     public ResponseEntity<List<TipoCredito>> obtener(){
         return tipoCreditoService.obteneristTipoCredito();
     }

@@ -40,13 +40,13 @@ public class Credito {
 
 	private Double valor;
 
-	private boolean activo;
-	
-	public int getId() {
+	private Boolean  activo;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -82,24 +82,34 @@ public class Credito {
 		this.lista_cuotas = lista_cuotas;
 	}
 
-	public int getMeses() {
+	public Integer getMeses() {
 		return meses;
 	}
 
-	public void setMeses(int meses) {
+	public void setMeses(Integer meses) {
 		this.meses = meses;
 	}
 
-	public double getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(double valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 
-	public Credito(int id, Usuario usuario, TipoCredito tipo_credito, LocalDateTime fecha_creado,
-			List<Cuota> lista_cuotas, int meses, double valor) {
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
+
+	
+
+	public Credito(Integer id, Usuario usuario, TipoCredito tipo_credito, LocalDateTime fecha_creado,
+			List<Cuota> lista_cuotas, Integer meses, Double valor, Boolean activo) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -108,17 +118,12 @@ public class Credito {
 		this.lista_cuotas = lista_cuotas;
 		this.meses = meses;
 		this.valor = valor;
-	}
-
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	
-	
+
+	public Credito() {
+		super();
+	}
 	
 	
 
