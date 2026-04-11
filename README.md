@@ -4,12 +4,15 @@ Prueba técnica desarrollada en Spring Boot.
 
 ## Tecnologías
 
-- Java
-- Spring Boot
+- Java 25
+- Spring Boot 4.0.5
 - Maven
 - JPA
 - Mockito
 - JUnit
+-ollama
+
+
 
 ## Funcionalidad
 
