@@ -4,6 +4,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,7 +34,14 @@ public class EmailServiceTest {
     void shouldSendEmailWithSummary() throws Exception {
         String summary = "Este es un resumen generado por IA";
         when(mailSender.createMimeMessage()).thenReturn(mimeMessage);
-        emailService.sendEmail(summary);
+        
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+		map.put("summary", summary);
+		String correo ="esteban_-456@hotmail.com";
+		String path = "src/main/resources/templates/news-email.html";
+		String subjec ="Tu Resumen Díario De Noticias";
+		
+        emailService.sendEmail(map,path,correo,subjec);
         verify(mailSender).createMimeMessage();
         verify(mailSender).send(mimeMessage);
         verify(mailSender, times(1)).send(mimeMessage);

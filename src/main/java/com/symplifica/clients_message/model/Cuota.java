@@ -88,4 +88,9 @@ public class Cuota {
 		this.fecha_pago = fecha_pago;
 	}
 
+	public Cuota() {
+		super();
+	}
+	
+
 }

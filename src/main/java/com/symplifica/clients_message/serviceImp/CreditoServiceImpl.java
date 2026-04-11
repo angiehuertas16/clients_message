@@ -1,6 +1,10 @@
 package com.symplifica.clients_message.serviceImp;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
@@ -8,23 +12,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.symplifica.clients_message.exceptions.CustomException;
 import com.symplifica.clients_message.exceptions.ExceptionDescriptions;
+import com.symplifica.clients_message.helpers.Helpers;
 import com.symplifica.clients_message.model.Credito;
+import com.symplifica.clients_message.model.Cuota;
 import com.symplifica.clients_message.repository.CreditoRepository;
+import com.symplifica.clients_message.repository.CuotaRepository;
 import com.symplifica.clients_message.service.CreditoService;
 
 @Service
 public class CreditoServiceImpl implements CreditoService {
 
     private final CreditoRepository creditoRepository;
+    
+    private final CuotaRepository cuotaRepository;
 
-    public CreditoServiceImpl(CreditoRepository creditoRepository) {
+    public CreditoServiceImpl(CreditoRepository creditoRepository, CuotaRepository cuotaRepository) {
         this.creditoRepository = creditoRepository;
+        this.cuotaRepository = cuotaRepository;
     }
 
     @Override
     public  ResponseEntity<Credito>  crearCredito(Credito credito) {
     	try {
     		credito=creditoRepository.save(credito);	
+    		Cuota cuota ;
+    		Double valor_cuota = Helpers.extractQuota(credito.getValor(), credito.getMeses(), credito.getTipo_credito().getRate());
+    		List<Cuota> listaCuotas = new ArrayList<Cuota>();
+    		LocalDateTime fecha = credito.getFecha_creado().plusMonths(1);
+    		for (int i = 0; i < credito.getMeses() ; i++) {
+    			cuota = new Cuota();
+    			cuota.setActivo(true);
+    			cuota.setCredito(credito);
+    			cuota.setFecha_pago(fecha.toLocalDate());
+    			cuota.setActivo(true);
+    			cuota.setValor_cuota(valor_cuota);
+    			fecha.plusMonths(1);
+    			listaCuotas.add(cuota);
+			}
+    		cuotaRepository.saveAll(listaCuotas);
 		} catch (Exception e) {
 			  throw new CustomException(ExceptionDescriptions.DATA_NOT_SAVE
 	        		  , HttpStatus.NOT_FOUND);
